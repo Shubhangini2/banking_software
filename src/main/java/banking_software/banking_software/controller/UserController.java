@@ -30,7 +30,7 @@ public class UserController {
     }
 
     //debit
-    @GetMapping("/debit")
+    @PostMapping("/debit")
     public ResponseEntity userDebit(@RequestParam int userId, @RequestBody int amoubt){
 
         String response = userService.userDebit(userId,amoubt);
