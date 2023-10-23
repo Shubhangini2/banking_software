@@ -31,9 +31,9 @@ public class UserController {
 
     //debit
     @PostMapping("/debit")
-    public ResponseEntity userDebit(@RequestParam int userId, @RequestBody int amoubt){
+    public ResponseEntity userDebit(@RequestParam int userId, @RequestBody int amount){
 
-        String response = userService.userDebit(userId,amoubt);
+        String response = userService.userDebit(userId,amount);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 

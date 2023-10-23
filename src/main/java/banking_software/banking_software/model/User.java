@@ -17,9 +17,11 @@ public class User {
     private String name;
 
     @Column(unique = true)
-    private String email;
+    private String userName;
 
     private String password;
+
+    private String roles;
 
     private int totalAmount; //Amount in the bank/balance
 

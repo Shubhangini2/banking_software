@@ -3,15 +3,23 @@ package banking_software.banking_software.service;
 import banking_software.banking_software.model.User;
 import banking_software.banking_software.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Autowired
     UserRepository userRepository;
     public String addUser(User user) {
 
+        //Before saving user we will encrypt the password
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //Set the role
+        user.setRoles("ROLE_USER");
         userRepository.save(user);
         return "User saved successfully";
     }
@@ -20,7 +28,7 @@ public class UserService {
 
         User user = userRepository.findById(userId).get();
         int currAmount = user.getTotalAmount();
-        user.setTotalAmount(currAmount+amount);
+        user.setTotalAmount(currAmount + amount);
         userRepository.save(user);
         return "Amount credited successfully";
     }
