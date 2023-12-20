@@ -49,7 +49,7 @@ public class UserController {
     @DeleteMapping("/delete")
     public ResponseEntity userDelete(@RequestParam int userId){
 
-        String response = userService.userDelete(userId);
+        String response = userService.userSoftDelete(userId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

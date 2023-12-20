@@ -23,6 +23,9 @@ public class User {
 
     private String roles;
 
+    @Column(name="is_deleted")
+    private boolean deleted;
+
     private int totalAmount; //Amount in the bank/balance
 
 }

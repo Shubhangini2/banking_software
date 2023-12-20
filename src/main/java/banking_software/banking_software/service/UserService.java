@@ -53,9 +53,16 @@ public class UserService {
         return "Password change successfully";
     }
 
-    public String userDelete(int userId) {
+//    public String userDelete(int userId) {
+//        User user = userRepository.findById(userId).get();
+//         userRepository.delete(user);
+//         return "User Deleted successfully";
+//    }
+
+    public String userSoftDelete(int userId) {
         User user = userRepository.findById(userId).get();
-         userRepository.delete(user);
-         return "User Deleted successfully";
+        user.setDeleted(true);
+        userRepository.save(user);
+        return "User Deleted successfully";
     }
 }
